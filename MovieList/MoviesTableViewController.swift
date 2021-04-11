@@ -21,6 +21,7 @@ class MoviesTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = false
         self.title = "Movies List"
         presenter = MovieListPresenter(view: self)
         presenter.fetchMoviesData()
@@ -81,7 +82,7 @@ class MoviesTableViewController: UITableViewController{
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "movieDetails") as! MovieDetailsViewController
         vc.presenter = MoviePresenter(view: vc)
         vc.presenter.movieToView = presenter.movies[indexPath.row]
-        
+        tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
